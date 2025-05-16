@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="text-center mb-4">
+    <h2>Welcome, {{ user.fullname }}</h2>
+    <p class="text-muted">Role: {{ user.role }}</p>
+  </div>
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-body">
+      <h5 class="card-title">Dashboard Overview</h5>
+      <p class="card-text">This is where you can manage your services, bookings, and more.</p>
+    </div>
+  </div>
+
+  {% if user.role == 'customer' %}
+    <div class="d-grid gap-2 mb-4">
+      <a href="{{ url_for('main.browse_services') }}" class="btn btn-outline-primary">Browse Services</a>
+      <a href="{{ url_for('main.book_service') }}" class="btn btn-primary">Book a Service</a>
+    </div>
+
+    <h4>Your Service Bookings</h4>
+    {% if bookings %}
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Service Type</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Provider</th>
+            <th>Invoice</th>
+          </tr>
+        </thead>
+        <tbody>
+    {% for booking in bookings %}
+  <tr>
+    <td>{{ booking.service_type }}</td>
+    <td>{{ booking.description }}</td>
+    <td>{{ booking.date }}</td>
+    <td>{{ booking.status }}</td>
+    <td>
+      {% if booking.provider %}
+        {{ booking.provider.fullname }}
+      {% else %}
+        Not Assigned
+      {% endif %}
+    </td>
+    {% if booking.status == 'Completed' %}
+      <td>
+        <a href="{{ url_for('main.generate_bill', booking_id=booking.id) }}" class="btn btn-sm btn-success">Generate Invoice</a>
+      </td>
+    {% else %}
+      <td>-</td>
+    {% endif %}
+  </tr>
+{% endfor %}
+
+        </tbody>
+      </table>
+    {% else %}
+      <p>You have not booked any services yet.</p>
+    {% endif %}
+  {% elif user.role == 'provider' %}
+    <div class="d-grid gap-2">
+      <a href="{{ url_for('main.provider_dashboard') }}" class="btn btn-secondary">View Assigned Bookings</a>
+    </div>
+  {% elif user.role == 'admin' %}
+    <div class="d-grid gap-2">
+      <a href="{{ url_for('main.admin_dashboard') }}" class="btn btn-warning">Manage Bookings</a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

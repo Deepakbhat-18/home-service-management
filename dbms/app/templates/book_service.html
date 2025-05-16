@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Book a Service</h2>
+
+    <form method="POST" action="{{ url_for('main.book_service') }}">
+        <div class="mb-3">
+            <label for="service_type" class="form-label">Service Type</label>
+            <input type="text" class="form-control" id="service_type" name="service_type" placeholder="e.g. Plumbing"
+                   value="{{ prefill_service if prefill_service else '' }}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Service Description</label>
+            <textarea class="form-control" id="description" name="description" rows="4"
+                      placeholder="Describe your service needs" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="date" class="form-label">Preferred Date</label>
+            <input type="datetime-local" class="form-control" id="date" name="date" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Book Now</button>
+        <a href="{{ url_for('main.dashboard') }}" class="btn btn-secondary ms-2">Back</a>
+    </form>
+</div>
+{% endblock %}

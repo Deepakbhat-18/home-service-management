@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head><title>Admin Dashboard</title></head>
+<body>
+<h2>All Bookings</h2>
+{% for booking in bookings %}
+<div style="border:1px solid #ccc; padding:10px; margin:10px;">
+    <strong>{{ booking.service_type }}</strong> by {{ booking.customer.fullname }} on {{ booking.date }}<br>
+    Status: {{ booking.status }}<br>
+    Assigned to: {{ booking.provider.fullname if booking.provider else 'Not Assigned' }}
+    <form method="post" style="margin-top:5px;">
+        <input type="hidden" name="booking_id" value="{{ booking.id }}">
+        Assign to:
+        <select name="provider_id">
+            {% for p in providers %}
+                <option value="{{ p.id }}" {% if booking.provider and booking.provider.id == p.id %}selected{% endif %}>{{ p.fullname }}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Assign">
+    </form>
+</div>
+{% else %}
+<p>No bookings available.</p>
+{% endfor %}
+
+<h2>All Users</h2>
+<table border="1" cellpadding="5">
+    <tr><th>Name</th><th>Email</th><th>Role</th></tr>
+    {% for u in users %}
+    <tr>
+        <td>{{ u.fullname }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{ u.role }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{{ url_for('main.logout') }}">Logout</a>
+</body>
+</html>
