@@ -11,7 +11,6 @@ public class HomeServiceApplication {
         System.out.println("==============================================");
         System.out.println("  Home Service Backend Started!");
         System.out.println("  API Base URL : http://localhost:8080/api");
-        System.out.println("  H2 Console   : http://localhost:8080/h2-console");
-        System.out.println("==============================================");
+
     }
 }

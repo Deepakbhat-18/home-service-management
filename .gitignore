@@ -1,17 +1,39 @@
-# Maven
+# Maven / Spring Boot
 target/
+*.jar
+*.war
+*.ear
 
-# Compiled class files
+# Compiled files
 *.class
 
 # Logs
+logs/
 *.log
 
-# IDE files
+# Temp
+*.tmp
+*.swp
+
+# Env / secrets
+.env
+.env.*
+application-local.properties
+application-dev.properties
+
+# Node / frontend
+node_modules/
+dist/
+build/
+
+# IDE
 .idea/
 .vscode/
 *.iml
 
-# OS files
+# OS
 .DS_Store
 Thumbs.db
+
+# Coverage
+coverage/
