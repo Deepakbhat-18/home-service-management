@@ -1,80 +1,134 @@
-# Home Service Management System
+# Home-Service
 
-Home Service Management System is a CRUD-based full-stack web application that helps users book home services and manage service requests based on roles.
-The application is built to demonstrate core backend concepts, database operations, and frontend–backend integration.
 
-## Installation
 
-Install the project locally using Python and pip.
+## 📝 Description
 
-git clone <repository-url>
-cd home-service-management
-pip install -r requirements.txt
+Home-service is a robust and scalable backend application developed in Java, utilizing Maven for streamlined project management and dependency handling. Designed to serve as a central hub for residential service ecosystems, this project provides a structured foundation for managing home-related tasks, service scheduling, and provider interactions. Its clean architecture and use of the Java ecosystem make it an ideal solution for developers looking to build or integrate reliable service management features into home automation platforms or service marketplaces.
 
-This installs all required Python libraries needed to run the Flask application.
+## 🛠️ Tech Stack
 
-## Usage
+Java (Spring Boot), MySQL, HTML, CSS, JavaScript, Maven
 
-Start the Flask development server:
 
-python run.py
+## 📦 Key Dependencies
 
-Then open your browser and navigate to:
+```
+spring-boot-starter-web: 2.5.0
+```
 
-http://127.0.0.1:5000
+## 📁 Project Structure
 
-Users can register, log in, and access features based on their assigned role.
+```
+.
+├── homeservice-frontend
+│   ├── css
+│   │   └── style.css
+│   ├── index.html
+│   └── js
+│       ├── api.js
+│       └── app.js
+└── homeservice_backend
+    ├── pom.xml
+    ├── src
+    │   └── main
+    │       ├── java
+    │       │   └── com
+    │       │       └── homeservice
+    │       │           ├── HomeServiceApplication.java
+    │       │           ├── config
+    │       │           │   ├── DataSeeder.java
+    │       │           │   └── SecurityConfig.java
+    │       │           ├── controller
+    │       │           │   ├── AdminController.java
+    │       │           │   ├── AppControllers.java
+    │       │           │   └── AuthController.java
+    │       │           ├── dto
+    │       │           │   └── Dto.java
+    │       │           ├── model
+    │       │           │   ├── Service.java
+    │       │           │   ├── ServiceBooking.java
+    │       │           │   └── User.java
+    │       │           ├── repository
+    │       │           │   ├── ServiceBookingRepository.java
+    │       │           │   ├── ServiceRepository.java
+    │       │           │   └── UserRepository.java
+    │       │           └── service
+    │       │               ├── BookingService.java
+    │       │               ├── ServiceCatalogService.java
+    │       │               └── UserService.java
+    │       └── resources
+    │           └── application.properties
+    └── target
+        └── classes
+            └── com
+                └── homeservice
+                    ├── dto
+                    │   └── Dto.class
+                    └── model
+                        ├── Service.class
+                        ├── ServiceBooking.class
+                        └── User.class
+```
 
-## Features
+## 🛠️ Development Setup
 
-### User Authentication
-Users can register and log in using email and password.
+### Java (Maven) Setup
+1. Install Java (JDK 11+ recommended)
+2. Install Maven
+3. Install dependencies: `mvn install`
+4. Run the project: `mvn exec:java` or check `pom.xml` for specific run commands
 
-### Role-Based Access Control
-The system supports three roles:
-- Customer
-- Service Provider
-- Admin
 
-### Home Service Booking (CRUD)
-Customers can create, view, and track home service bookings (e.g., plumbing, electrical, cleaning).
+## ⚙️ Configuration (Local Setup)
 
-### Provider Assignment
-Service providers are automatically assigned based on availability.
+### 📄 application.properties
 
-### Booking Status Management
-Providers can update the status of assigned service requests.
+Located at:
 
-### Invoice Generation
-A PDF invoice is generated for each completed service using FPDF.
+homeservice_backend/src/main/resources/application.properties
 
-## Tech Stack
+```properties
+# --- Server ---
+server.port=8080
 
-Backend   : Flask, SQLAlchemy  
-Frontend  : HTML, CSS, JavaScript  
-Database  : SQLite / PostgreSQL  
-Utilities : FPDF  
+# --- Application ---
+spring.application.name=Home Service Management
 
-## Example
+# --- MySQL Database ---
+spring.datasource.url=jdbc:mysql://localhost:3306/homeservice
 
-### Customer books a home service
-create_booking(service_type, description, date)
+# --- JPA / Hibernate ---
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
 
-### Provider updates service status
-update_status(booking_id, "Completed")
+# --- Profile ---
+spring.profiles.active=local
 
-### Admin assigns provider manually
-assign_provider(booking_id, provider_id)
+# --- Thymeleaf ---
+spring.thymeleaf.cache=false
 
-## Project Type
+# --- Logging ---
+logging.level.com.homeservice=DEBUG
 
-This project is intended as a learning-focused CRUD application to understand:
-- Database operations
-- Backend routing
-- Role-based workflows
-- Frontend–backend communication
+# --- Session Cookie ---
+server.servlet.session.cookie.same-site=Lax
+server.servlet.session.cookie.secure=false
+server.servlet.session.cookie.http-only=true
 
-## Contributing
+# --- Load .env ---
+spring.config.import=optional:file:.env[.properties]
 
-Contributions are welcome.
-Please open an issue before making major changes and ensure code is tested properly.
+### 📄 application-local.properties
+
+Create this file for local development:
+
+homeservice_backend/src/main/resources/application-local.properties
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/homeservice
+spring.datasource.username=root
+spring.datasource.password=your_password
+---
