@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HomeServe — Home Services at Your Doorstep</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- ── NAVBAR ──────────────────────────────────────── -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <div class="nav-brand">
+      <i class="fas fa-home" style="color:var(--saffron)"></i>
+      Home<span>Serve</span>
+    </div>
+    <div class="nav-links" id="nav-links">
+      <!-- injected by JS -->
+    </div>
+    <div class="nav-user" id="nav-user">
+      <!-- injected by JS -->
+    </div>
+  </div>
+</nav>
+
+<!-- ── TOAST ─────────────────────────────────────────── -->
+<div id="toast-container"></div>
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE: HOME
+══════════════════════════════════════════════════════ -->
+<div id="page-home" class="page">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="hero-eyebrow"><i class="fas fa-star"></i> Trusted Home Services</div>
+          <h1 class="hero-title">Your Home Deserves<br><span>Expert Care</span></h1>
+          <p class="hero-desc">Book verified professionals for electrical, plumbing, cleaning, AC service, and more — right to your doorstep.</p>
+          <div class="hero-btns">
+            <!-- injected by JS -->
+          </div>
+        </div>
+        <div class="hero-badge-grid">
+          <div class="hero-badge"><div class="hero-badge-icon">⚡</div><div class="hero-badge-val">8+</div><div class="hero-badge-label">Services</div></div>
+          <div class="hero-badge"><div class="hero-badge-icon">✓</div><div class="hero-badge-val">100%</div><div class="hero-badge-label">Verified</div></div>
+          <div class="hero-badge"><div class="hero-badge-icon">⏱</div><div class="hero-badge-val">Fast</div><div class="hero-badge-label">Response</div></div>
+          <div class="hero-badge"><div class="hero-badge-icon">🛡</div><div class="hero-badge-val">Safe</div><div class="hero-badge-label">Guaranteed</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick services preview -->
+  <div class="main-content">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Popular Services</div>
+          <div class="section-subtitle">Tap to explore and book</div>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="navigate('services')">View All</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px">
+        <div class="service-card" onclick="navigate('services')" style="text-align:center;padding:20px 14px">
+          <div class="service-icon" style="margin:0 auto 10px"><i class="fas fa-bolt"></i></div>
+          <div class="service-name">Electrical</div>
+        </div>
+        <div class="service-card" onclick="navigate('services')" style="text-align:center;padding:20px 14px">
+          <div class="service-icon" style="margin:0 auto 10px"><i class="fas fa-tint"></i></div>
+          <div class="service-name">Plumbing</div>
+        </div>
+        <div class="service-card" onclick="navigate('services')" style="text-align:center;padding:20px 14px">
+          <div class="service-icon" style="margin:0 auto 10px"><i class="fas fa-broom"></i></div>
+          <div class="service-name">Cleaning</div>
+        </div>
+        <div class="service-card" onclick="navigate('services')" style="text-align:center;padding:20px 14px">
+          <div class="service-icon" style="margin:0 auto 10px"><i class="fas fa-snowflake"></i></div>
+          <div class="service-name">AC Service</div>
+        </div>
+        <div class="service-card" onclick="navigate('services')" style="text-align:center;padding:20px 14px">
+          <div class="service-icon" style="margin:0 auto 10px"><i class="fas fa-paint-roller"></i></div>
+          <div class="service-name">Painting</div>
+        </div>
+        <div class="service-card" onclick="navigate('services')" style="text-align:center;padding:20px 14px">
+          <div class="service-icon" style="margin:0 auto 10px"><i class="fas fa-hammer"></i></div>
+          <div class="service-name">Carpentry</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE: LOGIN
+══════════════════════════════════════════════════════ -->
+<div id="page-login" class="page">
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <h2>Home<span>Serve</span></h2>
+        <p>Sign in to your account</p>
+      </div>
+
+      <div id="login-alert" class="alert" style="display:none"></div>
+
+      <!-- Quick login pills for demo -->
+      <div style="margin-bottom:20px">
+        <div style="font-size:.75rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px">Quick Demo Login</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-ghost btn-sm" onclick="quickLogin('customer@home.com','customer123')">👤 Customer</button>
+          <button class="btn btn-ghost btn-sm" onclick="quickLogin('provider@home.com','provider123')">🔧 Provider</button>
+          <button class="btn btn-ghost btn-sm" onclick="quickLogin('admin@home.com','admin123')">⚙️ Admin</button>
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <form id="login-form">
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" name="email" class="form-control" placeholder="your@email.com" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" name="password" class="form-control" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%">Login</button>
+      </form>
+
+      <div class="auth-footer">
+        Don't have an account? <a href="#" onclick="navigate('register')">Register here</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE: REGISTER
+══════════════════════════════════════════════════════ -->
+<div id="page-register" class="page">
+  <div class="auth-wrap">
+    <div class="auth-card" style="max-width:520px">
+      <div class="auth-logo">
+        <h2>Home<span>Serve</span></h2>
+        <p>Create your account</p>
+      </div>
+
+      <div id="register-alert" class="alert" style="display:none"></div>
+
+      <form id="register-form">
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" name="fullname" class="form-control" placeholder="Priya Sharma" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" class="form-control" placeholder="your@email.com" required />
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">Phone</label>
+            <input type="tel" name="phone" class="form-control" placeholder="9876543210" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Role</label>
+            <select name="role" class="form-control">
+              <option value="customer">Customer</option>
+              <option value="provider">Service Provider</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Address</label>
+          <input type="text" name="address" class="form-control" placeholder="123 Main Street, Bengaluru" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" name="password" class="form-control" placeholder="Min. 6 characters" required />
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%">Create Account</button>
+      </form>
+
+      <div class="auth-footer">
+        Already have an account? <a href="#" onclick="navigate('login')">Login here</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE: SERVICES (Customer)
+══════════════════════════════════════════════════════ -->
+<div id="page-services" class="page">
+  <div class="main-content">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Our Services</div>
+          <div class="section-subtitle">Click on any service to book instantly</div>
+        </div>
+        <div class="search-wrap">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" id="service-search" class="form-control search-input" placeholder="Search services…" />
+        </div>
+      </div>
+      <div id="services-grid" class="services-grid">
+        <div class="loading"><div class="spinner"></div><span>Loading services…</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE: MY BOOKINGS (Customer)
+══════════════════════════════════════════════════════ -->
+<div id="page-my-bookings" class="page">
+  <div class="main-content">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-title">My Bookings</div>
+          <div class="section-subtitle">Track all your service requests</div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="navigate('services')">
+          <i class="fas fa-plus"></i> New Booking
+        </button>
+      </div>
+      <div id="my-bookings-list">
+        <div class="loading"><div class="spinner"></div><span>Loading…</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE: PROVIDER JOBS
+══════════════════════════════════════════════════════ -->
+<div id="page-provider-jobs" class="page">
+  <div class="main-content">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-title">My Assigned Jobs</div>
+          <div class="section-subtitle">Manage and update your job statuses</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="renderProviderJobs()">
+          <i class="fas fa-sync-alt"></i> Refresh
+        </button>
+      </div>
+      <div id="provider-jobs-list">
+        <div class="loading"><div class="spinner"></div><span>Loading…</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE: ADMIN DASHBOARD
+══════════════════════════════════════════════════════ -->
+<div id="page-admin" class="page">
+  <div class="main-content">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-title">Admin Dashboard</div>
+          <div class="section-subtitle">Manage bookings, users and providers</div>
+        </div>
+        <button class="btn btn-ghost btn-sm" onclick="renderAdmin()">
+          <i class="fas fa-sync-alt"></i> Refresh
+        </button>
+      </div>
+
+      <!-- Stats -->
+      <div id="admin-stats" class="stat-grid" style="margin-bottom:28px">
+        <div class="loading"><div class="spinner"></div></div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs" id="admin-tabs">
+        <button class="tab-btn active" data-tab="bookings">All Bookings</button>
+        <button class="tab-btn" data-tab="users">All Users</button>
+      </div>
+
+      <div id="tab-bookings" class="tab-panel active">
+        <div id="admin-bookings-table">
+          <div class="loading"><div class="spinner"></div><span>Loading…</span></div>
+        </div>
+      </div>
+
+      <div id="tab-users" class="tab-panel">
+        <div id="admin-users-table">
+          <div class="loading"><div class="spinner"></div><span>Loading…</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     MODAL: BOOKING
+══════════════════════════════════════════════════════ -->
+<div class="modal-overlay" id="booking-modal">
+  <div class="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="booking-modal-title">Book Service</div>
+        <div style="color:var(--saffron);font-family:var(--ff-display);font-size:1.1rem;margin-top:3px" id="booking-modal-price"></div>
+      </div>
+      <button class="modal-close" id="booking-modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div id="booking-alert" class="alert" style="display:none"></div>
+      <form id="booking-form">
+        <input type="hidden" id="booking-service-type" />
+        <div class="form-group">
+          <label class="form-label">Service</label>
+          <input type="text" class="form-control" id="booking-modal-service" readonly style="background:var(--cream)" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Preferred Date</label>
+          <input type="date" id="booking-date" class="form-control" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+          <textarea id="booking-description" class="form-control" rows="3" placeholder="Describe the issue or any special instructions…"></textarea>
+        </div>
+        <div style="background:var(--cream);border:1px solid var(--border);border-radius:var(--radius-md);padding:12px 14px;font-size:.85rem;color:var(--ink-soft);margin-bottom:4px">
+          <i class="fas fa-info-circle" style="color:var(--saffron)"></i>
+          A provider will be automatically assigned. You can track the status in My Bookings.
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="document.getElementById('booking-modal').classList.remove('open')">Cancel</button>
+      <button type="submit" form="booking-form" class="btn btn-primary">
+        <i class="fas fa-check"></i> Confirm Booking
+      </button>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="js/app.js"></script>
+<script>
+  // Quick login helper (accessible outside module)
+  function quickLogin(email, password) {
+    document.querySelector('#login-form [name=email]').value = email;
+    document.querySelector('#login-form [name=password]').value = password;
+    document.querySelector('#login-form').dispatchEvent(new Event('submit'));
+  }
+
+  // Fix alert display (hide when empty)
+  document.querySelectorAll('.alert').forEach(el => {
+    const obs = new MutationObserver(() => {
+      el.style.display = el.textContent.trim() ? 'flex' : 'none';
+    });
+    obs.observe(el, { childList: true, characterData: true, subtree: true });
+  });
+</script>
+
+</body>
+</html>
